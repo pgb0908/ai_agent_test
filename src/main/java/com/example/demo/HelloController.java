@@ -86,4 +86,10 @@ public class HelloController {
         logger.info("Called time");
         return "Current Time: " + LocalDateTime.now();
     }
+
+    @GetMapping("/time")
+    public String logger() {
+        logger.info("logger test");
+        return "logger test";
+    }
 }
