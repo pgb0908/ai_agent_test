@@ -1,0 +1,29 @@
+name: PR Agent
+
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  pr_agent_job:
+    if: ${{ github.event.sender.type != 'Bot' }}
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+      contents: write
+    name: Run PR Agent
+    steps:
+      - name: PR Agent action step
+        id: pr_agent_manager
+        uses: Codium-ai/pr-agent@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+          # [변경됨] Groq API 키 설정
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+
+          # 설정 파일 지정
+          PR_AGENT_CONFIG_FILE: .pr_agent.toml

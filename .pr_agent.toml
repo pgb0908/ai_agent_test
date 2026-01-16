@@ -1,0 +1,19 @@
+[config]
+# [변경됨] Groq 모델 지정 (Llama 3.3 70B가 코딩 성능이 가장 우수합니다)
+model = "groq/llama-3.3-70b-versatile"
+model_turbo = "groq/llama-3.3-70b-versatile"
+fallback_model = "groq/llama-3.1-8b-instant"
+
+[pr_reviewer]
+# SRE/C++ 전문가 페르소나 유지
+extra_instructions = """
+Answer in Korean.
+You are a Senior SRE and Java Expert.
+Focus on:
+1. Potential memory leaks or performance bottlenecks.
+2. Error handling and edge cases.
+3. Clean code practices.
+"""
+
+[pr_description]
+extra_instructions = "Please write the description in Korean."
